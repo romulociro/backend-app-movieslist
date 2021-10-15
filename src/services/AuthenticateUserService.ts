@@ -2,6 +2,7 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import authConfig from '../config/auth';
 import usersRepository from '../repositories/UserRepository';
+import AppError from '../errors/AppError';
 
 interface IRequest {
   username: string;
@@ -25,7 +26,7 @@ class AuthenticateUserService {
 
     // Verificar se o usuario existe retorna user ou pass incorret por questão de segurança
     if (!user) {
-      throw new Error('username/password combination incorrect');
+      throw new AppError('username/password combination incorrect', 401);
     }
 
     // Comparar o password informado pelo user com o criptografado
@@ -33,7 +34,7 @@ class AuthenticateUserService {
 
     // Mesmo erro por questão de segurança
     if (!passwordMatched) {
-      throw new Error('username/password combination incorrect');
+      throw new AppError('username/password combination incorrect', 401);
     }
 
     const { secret, expiresIn } = authConfig.jwt;
