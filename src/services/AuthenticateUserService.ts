@@ -1,6 +1,6 @@
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
-
+import authConfig from '../config/auth';
 import usersRepository from '../repositories/UserRepository';
 
 interface IRequest {
@@ -36,9 +36,11 @@ class AuthenticateUserService {
       throw new Error('username/password combination incorrect');
     }
 
-    const token = sign({}, 'a459c3ffac1332f89fc41f4024db7758', {
+    const { secret, expiresIn } = authConfig.jwt;
+
+    const token = sign({}, secret, {
       subject: user.id,
-      expiresIn: '1d',
+      expiresIn,
     });
 
     return {
