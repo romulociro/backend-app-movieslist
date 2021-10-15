@@ -27,7 +27,6 @@ export default class MoviesController {
     const movies = new ListMovieService();
 
     const movie = await movies.findTop();
-    console.log(movies);
 
     return response.json(movie);
   }
