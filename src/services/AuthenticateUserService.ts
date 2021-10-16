@@ -12,7 +12,7 @@ interface IRequest {
 interface IUserModel {
   date: Date;
   username: string;
-  password: string;
+  password?: string;
 }
 
 interface IResponse {

@@ -1,15 +1,17 @@
 import express from 'express';
 import 'express-async-errors';
+import cors from 'cors';
 import routes from './routes';
 import Db from './database';
 import ensureErrors from './middlewares/ensureErrors';
 
 const app = express();
 
-const teste = new Db();
+const database = new Db();
 
-teste.createConnection();
+database.createConnection();
 
+app.use(cors());
 app.use(express.json());
 app.use(routes);
 
