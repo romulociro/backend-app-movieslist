@@ -15,7 +15,7 @@ sessionsRouter.post('/', async (request, response) => {
       password,
     });
 
-    delete user.password;
+    user.password = undefined;
 
     return response.json({ user, token });
   } catch (err: any) {
