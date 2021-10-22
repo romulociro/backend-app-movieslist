@@ -34,11 +34,7 @@ $ cd backend
 # Instale as dependências
 $ yarn install
 
-# Execute a aplicação em modo de desenvolvimento
-$ yarn dev:server
-
 # Para iniciar o banco de dados é necessário criar um container com a imagem do MongoDB no Docker
-
 $ sudo apt install docker.io
 # Download Docker Composer
 $ sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -47,7 +43,13 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 # Na pasta do projeto clonado
 $ sudo docker-compose up -d
 
+# Execute a aplicação em modo de desenvolvimento
+$ yarn dev:server
+
 # O servidor inciará na porta:3333 - acesse <http://localhost:3333>
+
+# Após subir a aplicação a documentação estará no link
+http://localhost:3333/api-docs/
 ```
 ### FrontEnd
 https://github.com/romulociro/frontend-movieslist
