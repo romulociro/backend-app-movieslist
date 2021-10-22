@@ -1,0 +1,178 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "MoviesList Documentation",
+    "description": "This is an API MoviesList",
+    "version": "1.0.0",
+    "contact":{
+      "email": "ciro143@gmail.com"
+    }
+  },
+  "paths": {
+    "/users":{
+      "post": { 
+        "tags": ["User"],
+        "summary": "Create a user",
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties":{
+                  "username":{
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "username": "usertest",
+                  "password": "password123"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "User already exists"
+          }
+        }
+      }
+    },
+    "/sessions":{
+      "post": { 
+        "tags": ["Sessions"],
+        "summary": "Authenticate User",
+        "description": "Authenticate user with token JWT",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties":{
+                  "username":{
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "username": "usertest",
+                  "password": "password123"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "username/password combination incorrect"
+          }
+        }
+      }
+    },
+    "/movies":{
+      "post": { 
+        "tags": ["Movies"],
+        "summary": "Create a movie",
+        "description": "Create a movie",
+        "components":{
+          "securitySchemes":{
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+              }
+            }  
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties":{
+                  "title":{
+                    "type": "string"
+                  },
+                  "director": {
+                    "type": "string"
+                  },
+                  "category":{
+                    "type": "string"
+                  },
+                  "sinopse":{
+                    "type": "string"
+                  },
+                  "year":{
+                    "type": "number"
+                  },
+                  "review":{
+                    "type": "number"
+                  }     
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Movie already exists"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Movies"],
+        "summary": "List all movies",
+        "description": "List all movies",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties":{
+                      "title":{
+                        "type": "string"
+                      },
+                      "director": {
+                        "type": "string"
+                      },
+                      "category":{
+                        "type": "string"
+                      },
+                      "sinopse":{
+                        "type": "string"
+                      },
+                      "year":{
+                        "type": "number"
+                      },
+                      "review":{
+                        "type": "number"
+                      }     
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }  
+}
