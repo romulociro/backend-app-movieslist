@@ -1,0 +1,12 @@
+version: '3.3'
+
+services:
+  db:
+    image: mongo
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_DATABASE=movieslistdb
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=movielist123
+    ports:
+      - '27017:27017'
