@@ -40,10 +40,12 @@ $ yarn dev:server
 # Para iniciar o banco de dados é necessário criar um container com a imagem do MongoDB no Docker
 
 $ sudo apt install docker.io
-$ sudo docker pull mongo
-$ sudo docker run --name mongodb -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME="username" -e MONGO_INITDB_ROOT_PASSWORD="senha" mongo
-$ sudo docker start mongodb
-
+# Download Docker Composer
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# Aplicar permissões executáveis para o binário baixado
+$ sudo chmod +x /usr/local/bin/docker-compose
+# Na pasta do projeto clonado
+$ sudo docker-compose up -d
 
 # O servidor inciará na porta:3333 - acesse <http://localhost:3333>
 ```
